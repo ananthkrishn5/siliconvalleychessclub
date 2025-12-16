@@ -17,7 +17,7 @@ const App = () => {
   ];
 
   const chessImages = {
-    hero: 'https://images.unsplash.com/photo-1578898783915-47b11afdbe71?w=1200&h=800&fit=crop&auto=format',
+    hero: '/public/heroimg.jpeg',
     coach: 'https://images.unsplash.com/photo-1603398938378-e54a6df8f675?w=800&h=600&fit=crop&auto=format',
     event1: 'https://images.unsplash.com/photo-1601001435828-419e309a2f53?w=600&h=400&fit=crop&auto=format',
     event2: 'https://images.unsplash.com/photo-1579952363873-27d3bfad9c3f?w=600&h=400&fit=crop&auto=format',
