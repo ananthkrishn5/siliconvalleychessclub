@@ -137,7 +137,8 @@ const App = () => {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-logo">
-            <span className="logo-text">♔ CHESS ACADEMY</span>
+            <img src="/images/logo.jpeg" alt="Chess Academy Logo" className="logo-image" />
+            <span className="logo-text">CHESS ACADEMY</span>
           </div>
           <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
             {navItems.map(item => (
