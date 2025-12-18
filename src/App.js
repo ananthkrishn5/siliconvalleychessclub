@@ -1,10 +1,17 @@
-// COMPLETE App.js - FULL CODE with What We Offer + Branches in Home
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    phone: '',
+    message: '', 
+    service: '' 
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -17,22 +24,52 @@ const App = () => {
   ];
 
   const chessImages = {
-    hero: '/public/heroimg.jpeg',
-    coach: 'https://images.unsplash.com/photo-1603398938378-e54a6df8f675?w=800&h=600&fit=crop&auto=format',
-    event1: 'https://images.unsplash.com/photo-1601001435828-419e309a2f53?w=600&h=400&fit=crop&auto=format',
-    event2: 'https://images.unsplash.com/photo-1579952363873-27d3bfad9c3f?w=600&h=400&fit=crop&auto=format',
-    winner1: 'https://images.unsplash.com/photo-1571285802381-e0f8e0eb11b7?w=400&h=400&fit=crop&auto=format',
-    trophy: 'https://images.unsplash.com/photo-1572124202138-12b681d17a81?w=600&h=400&fit=crop&auto=format',
-    branch1: 'https://images.unsplash.com/photo-1560253021-9b21e33c12aa?w=600&h=400&fit=crop&auto=format',
-    branch2: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24f?w=600&h=400&fit=crop&auto=format',
-    branch3: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop&auto=format',
-    branch4: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&auto=format',
-    beginner: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&h=300&fit=crop&auto=format',
-    advanced: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop&auto=format',
-    tournament: 'https://images.unsplash.com/photo-1601001435828-419e309a2f53?w=400&h=300&fit=crop&auto=format',
-    online: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop&auto=format',
-    kids: 'https://images.unsplash.com/photo-1571285802381-e0f8e0eb11b7?w=400&h=300&fit=crop&auto=format',
-    corporate: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400&h=300&fit=crop&auto=format'
+    hero: 'images/heroimg.jpeg',
+    coach: '/images/venkat.jpg',
+    event1: '/images/rapid.jpeg',
+    event2: '/images/weekly.jpeg',
+    winner1: '/images/user.jpeg',
+    trophy: '/images/user.jpeg',
+    branch1: '/images/sfo.png',
+    branch2: '/images/London.jpeg',
+    branch3: '/images/Mumbai.png',
+    beginner: '/images/Beginner.png',
+    advanced: '/images/Advanced.png',
+    tournament: '/images/tournament.jpeg',
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const emailBody = `
+🎮 SILICON VALLEY CHESS CLUB - New Contact Form Submission 🎮
+
+👤 Name: ${formData.name}
+📧 Email: ${formData.email}
+📱 Phone: ${formData.phone || 'Not provided'} 
+🎯 Service Interested: ${formData.service || 'Not specified'}
+💬 Message: ${formData.message}
+
+---
+📅 Submitted: ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })}
+🌐 From Silicon Valley Chess Club Website
+    `;
+    
+    const subject = `Chess Club Inquiry - ${formData.name} (${formData.service || 'General'})`;
+    const mailtoLink = `mailto:siliconvalleychessclub@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    window.location.href = mailtoLink;
+    
+    setTimeout(() => {
+      setFormData({ name: '', email: '', phone: '', message: '', service: '' });
+      setIsSubmitting(false);
+    }, 1500);
   };
 
   const branches = [
@@ -63,15 +100,6 @@ const App = () => {
       image: chessImages.branch3,
       rating: 4.9
     },
-    {
-      id: 4,
-      city: 'Toronto',
-      address: '56 Bishop St, Downtown Toronto, ON M5V 1A1',
-      phone: '+1 (416) 555-0202',
-      email: 'toronto@chessacademy.com',
-      image: chessImages.branch4,
-      rating: 4.7
-    }
   ];
 
   const services = [
@@ -102,33 +130,6 @@ const App = () => {
       duration: '6 weeks',
       price: '$149'
     },
-    {
-      id: 4,
-      title: 'Online Coaching',
-      description: 'Live 1-on-1 sessions anywhere, anytime',
-      icon: '💻',
-      image: chessImages.online,
-      duration: 'Flexible',
-      price: '$29/hr'
-    },
-    {
-      id: 5,
-      title: 'Kids Program',
-      description: 'Fun chess classes for children 5-15 years',
-      icon: '👶',
-      image: chessImages.kids,
-      duration: '10 weeks',
-      price: '$89'
-    },
-    {
-      id: 6,
-      title: 'Corporate Training',
-      description: 'Team building & strategic thinking workshops',
-      icon: '🏢',
-      image: chessImages.corporate,
-      duration: 'Custom',
-      price: 'Contact Us'
-    }
   ];
 
   return (
@@ -137,9 +138,13 @@ const App = () => {
       <nav className="navbar">
         <div className="nav-container">
           <div className="nav-logo">
-            <img src="/public/logo.jpeg" alt="Chess Academy Logo" className="logo-image" />
-            <span className="logo-text">Silicon Valley Chess Club</span>
+            <img src="/images/logo.jpeg" alt="Silicon Valley Chess Club" className="logo-image" />
+            <div className="logo-text">
+              <span>SILICON VALLEY CHESS CLUB</span>
+              <span></span>
+            </div>
           </div>
+
           <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
             {navItems.map(item => (
               <li key={item.id} className="nav-item">
@@ -180,31 +185,55 @@ const App = () => {
         </div>
 
         {/* What We Offer Section - Inside Home */}
-        <div className="offer-section">
-          <div className="container">
-            <h2 className="section-title offer-title">What We Offer</h2>
-            <p className="section-subtitle">Comprehensive chess training programs for all levels</p>
-            <div className="services-grid">
-              {services.map((service) => (
-                <div key={service.id} className="service-card">
-                  <div className="service-icon">{service.icon}</div>
-                  <div className="service-image">
-                    <img src={service.image} alt={service.title} loading="lazy" />
-                  </div>
-                  <div className="service-content">
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                    <div className="service-details">
-                      <span className="service-duration">{service.duration}</span>
-                      <span className="service-price">{service.price}</span>
+          <div className="offer-section">
+            <div className="container">
+              <h2 className="section-title offer-title">What We Offer</h2>
+              <p className="section-subtitle">Comprehensive chess training programs for all levels</p>
+              <div className="services-grid">
+                {services.map((service) => (
+                  <div key={service.id} className="service-card">
+                    <div className="service-icon">{service.icon}</div>
+                    <div className="service-image">
+                      <img src={service.image} alt={service.title} loading="lazy" />
                     </div>
-                    <button className="service-button">Enroll Now</button>
+                    <div className="service-content">
+                      <h3>{service.title}</h3>
+                      <p>{service.description}</p>
+                      <div className="service-details">
+                        <span className="service-duration">{service.duration}</span>
+                        <span className="service-price">{service.price}</span>
+                      </div>
+                      {/* ✅ NAVIGATES TO CONTACT + AUTO-FILLS SERVICE */}
+                      <button 
+                        className="service-button"
+                        onClick={() => {
+                          // 1. Navigate to Contact section
+                          setActiveSection('contact');
+                          
+                          // 2. Auto-fill the service in form
+                          setFormData(prev => ({ 
+                            ...prev, 
+                            service: service.title 
+                          }));
+                          
+                          // 3. Smooth scroll to top
+                          setTimeout(() => {
+                            window.scrollTo({ 
+                              top: 0, 
+                              behavior: 'smooth' 
+                            });
+                          }, 100);
+                        }}
+                      >
+                        Enroll Now
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+
 
         {/* Branches Section - Inside Home */}
         <div className="branches-section">
@@ -317,14 +346,13 @@ const App = () => {
               <img src={chessImages.coach} alt="Head Coach" loading="lazy" />
             </div>
             <div className="coach-details">
-              <h3>GM Alexei Ivanov</h3>
+              <h3>Venkata Giri Acharya</h3>
               <p className="coach-title">International Grandmaster | FIDE Master Trainer</p>
               <ul className="coach-achievements">
                 <li>3x National Champion</li>
                 <li>World Championship Quarterfinalist</li>
                 <li>15+ Years Coaching Experience</li>
               </ul>
-              <button className="book-button">Book Session</button>
             </div>
           </div>
         </div>
@@ -374,11 +402,39 @@ const App = () => {
                 <p>Overall Winner</p>
               </div>
             </div>
+            <div className="winner-card">
+              <img src={chessImages.winner1} alt="Winner 1" loading="lazy" />
+              <div className="winner-info">
+                <h4>John Smith</h4>
+                <p>1st Place - December Rapid</p>
+              </div>
+            </div>
+            <div className="winner-card trophy-card">
+              <img src={chessImages.trophy} alt="Tournament Trophy" loading="lazy" />
+              <div className="winner-info">
+                <h4>Monthly Championship</h4>
+                <p>Overall Winner</p>
+              </div>
+            </div>
+            <div className="winner-card">
+              <img src={chessImages.winner1} alt="Winner 1" loading="lazy" />
+              <div className="winner-info">
+                <h4>John Smith</h4>
+                <p>1st Place - December Rapid</p>
+              </div>
+            </div>
+            <div className="winner-card trophy-card">
+              <img src={chessImages.trophy} alt="Tournament Trophy" loading="lazy" />
+              <div className="winner-info">
+                <h4>Monthly Championship</h4>
+                <p>Overall Winner</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - UPDATED FORM */}
       <section id="contact" className={`section ${activeSection === 'contact' ? 'active' : ''}`}>
         <div className="container">
           <h2 className="section-title">Contact Us</h2>
@@ -387,27 +443,71 @@ const App = () => {
               <h3>Get In Touch</h3>
               <div className="contact-item">
                 <span>📧</span>
-                <span>info@chessacademy.com</span>
+                <span>siliconvalleychessclub@gmail.com</span>
               </div>
               <div className="contact-item">
                 <span>📱</span>
-                <span>+1 (555) 123-4567</span>
+                <span>+1 6509330233</span>
               </div>
               <div className="contact-item">
-                <span>📍</span>
-                <span>123 Chess Street, Tournament City</span>
+                <span>🔹</span>
+                <span>Silicon Valley, CA</span>
               </div>
             </div>
-            <form className="contact-form">
-              <input type="text" placeholder="Your Name" required />
-              <input type="email" placeholder="Your Email" required />
-              <textarea placeholder="Your Message" rows="5" required></textarea>
-              <button type="submit" className="submit-button">Send Message</button>
-            </form>
+            
+            {/* ENHANCED CONTACT FORM WITH SERVICE SELECTION */}
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <input 
+    type="text" 
+    name="name"
+    placeholder="Your Name *" 
+    required 
+    value={formData.name}
+    onChange={handleChange}
+  />
+  <input 
+    type="tel" 
+    name="phone"  
+    placeholder="Your Phone (Optional)"
+    value={formData.phone}
+    onChange={handleChange}
+  />
+  <input 
+    type="email" 
+    name="email"
+    placeholder="Your Email *" 
+    required 
+    value={formData.email}
+    onChange={handleChange}
+  />
+  
+  <div className="form-group">
+    <label className="form-label">What are you interested in? *</label>
+    <select name="service" required value={formData.service} onChange={handleChange} className="form-select">
+      <option value="">Select a program...</option>
+      <option value="Beginner Classes">♟️ Beginner Classes (8 weeks - $99)</option>
+      <option value="Advanced Training">♛ Advanced Training (12 weeks - $199)</option>
+      <option value="Tournament Prep">🏆 Tournament Prep (6 weeks - $149)</option>
+    </select>
+  </div>
+
+  <textarea 
+    name="message"
+    placeholder="Tell us more about your chess goals..." 
+    rows="5" 
+    required 
+    value={formData.message}
+    onChange={handleChange}
+  />
+  
+  <button type="submit" className={`submit-button ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
+    {isSubmitting ? '📤 Sending...' : '📧 Send Email'}
+  </button>
+</form>
           </div>
         </div>
       </section>
-
+      
       {/* Footer */}
       <footer className="footer">
         <div className="container">
