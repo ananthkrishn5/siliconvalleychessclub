@@ -773,7 +773,7 @@ body {
 }
 
 .coach-title {
-  color: #ffd700;
+  color: rgb(5, 5, 114);
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 2rem;
@@ -800,8 +800,8 @@ body {
   position: absolute;
   left: 0;
   top: 1rem;
-  color: #ffd700;
-  font-size: 1.2rem;
+  color: #ffaa00;
+  font-size: 5.2rem;
   text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
 }
 
@@ -1308,9 +1308,61 @@ body {
 
 /* RESPONSIVE DESIGN - PERFECT ACROSS ALL DEVICES */
 @media (max-width: 1024px) {
+    .nav-container {
+    padding: 0 15px;
+    height: 65px;
+  }
+  
+  .logo-image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logo-text span:first-child {
+    font-size: 0.9rem;
+  }
+  
+  .logo-text span:last-child {
+    font-size: 0.75rem;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 65px;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.98);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    padding: 2rem 0;
+    gap: 1rem;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .nav-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
   .hero {
     flex-direction: column;
     text-align: center;
+    margin-bottom: -290px;
   }
   
   .hero-content {
@@ -1324,9 +1376,19 @@ body {
   .hero-image {
     flex: none;
     height: 50vh;
-    width: 100%;
+    width: 80%;
     order: 1;
+    margin-left: -155px;
+    margin-top: 155px;
+    margin-bottom: -105px;
   }
+    .hero-image img {
+    width: 70%;
+    height: 80%;
+    object-fit: cover;
+    transition: transform 0.6s 
+ease;
+}
 }
 
 @media (max-width: 768px) {
@@ -1433,6 +1495,29 @@ body {
 }
 
 @media (max-width: 480px) {
+    .hero-image img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s 
+ease;
+}
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: -200px;
+  }
+  
+  .hero-content {
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    order: 2;
+    padding-top: 2rem;
+  }
+  .hero-title{
+    margin-top: 120px;
+  }
   .container {
     padding: 0 15px;
   }
@@ -1452,7 +1537,18 @@ body {
   
   .hero-image {
     height: 35vh;
+    width: 75vh;
+    margin-left: -210px;
+    margin-top: -59px;
   }
+  .hero-image img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s 
+ease;
+}
+
 
   .services-grid {
     grid-template-columns: 1fr;
@@ -1499,7 +1595,7 @@ body {
   background: linear-gradient(135deg, #f2de02 0%, #fbe600 100%);
   padding: 2.5rem;
   border-radius: 20px;
-  color: white;
+  color: rgb(5, 5, 114);
   height: fit-content;
   box-shadow: 0 20px 40px rgba(30, 58, 138, 0.3);
 }
@@ -1508,6 +1604,7 @@ body {
   margin-bottom: 2rem;
   font-size: 1.75rem;
   font-weight: 700;
+  color: rgb(5, 5, 114);
 }
 
 .contact-item {
@@ -1626,7 +1723,7 @@ body {
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffe100 0%, #f4df00 100%);
+  background: linear-gradient(135deg, rgb(5, 5, 114) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1638,6 +1735,30 @@ body {
 
 /* Tablet (768px and below) */
 @media (max-width: 768px) {
+    .hero-image img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s 
+ease;
+}
+
+ .hero {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: -5000px;
+  }
+  
+  .hero-content {
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    order: 2;
+    padding-top: 2rem;
+  }
+  .hero-title{
+    margin-top: 120px;
+  }
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -1678,6 +1799,22 @@ body {
 
 /* Mobile Large (480px and below) */
 @media (max-width: 480px) {
+   .hero {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: -200px;
+  }
+  
+  .hero-content {
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    order: 2;
+    padding-top: 2rem;
+  }
+  .hero-title{
+    margin-top: 120px;
+  }
   .container {
     padding: 0 12px;
   }
@@ -1724,6 +1861,22 @@ body {
 
 /* Small Mobile (360px and below) */
 @media (max-width: 360px) {
+   .hero {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 500px;
+  }
+  
+  .hero-content {
+    margin: 0 auto;
+    max-width: 90%;
+    text-align: center;
+    order: 2;
+    padding-top: 2rem;
+  }
+  .hero-title{
+    margin-top: 120px;
+  }
   .section-title {
     font-size: 1.6rem;
   }

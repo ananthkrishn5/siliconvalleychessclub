@@ -346,7 +346,7 @@ const App = () => {
               <img src={chessImages.coach} alt="Head Coach" loading="lazy" />
             </div>
             <div className="coach-details">
-              <h3>Venkata Giri Acharya</h3>
+              <h3>Venkat Acharya</h3>
               <p className="coach-title">International Grandmaster | FIDE Master Trainer</p>
               <ul className="coach-achievements">
                 <li>3x National Champion</li>
