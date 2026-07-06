@@ -24,7 +24,7 @@ const App = () => {
   ];
 
   const chessImages = {
-    hero: 'images/heroimg.jpeg',
+    hero: 'images/svcclogonew.png',
     coach: '/images/venkat.jpg',
     event1: '/images/rapid.jpeg',
     event2: '/images/weekly.jpeg',
@@ -103,6 +103,33 @@ const App = () => {
   ];
 
   const services = [
+    {
+      id: 1,
+      title: 'Beginner Classes',
+      description: 'Learn chess fundamentals from FIDE-rated coaches',
+      icon: '♟️',
+      image: chessImages.beginner,
+      duration: '8 weeks',
+      price: '$99'
+    },
+    {
+      id: 2,
+      title: 'Advanced Training',
+      description: 'Master openings, middlegame & endgame strategies',
+      icon: '♛',
+      image: chessImages.advanced,
+      duration: '12 weeks',
+      price: '$199'
+    },
+    {
+      id: 3,
+      title: 'Tournament Prep',
+      description: 'Get ready for FIDE-rated competitions',
+      icon: '🏆',
+      image: chessImages.tournament,
+      duration: '6 weeks',
+      price: '$149'
+    },
     {
       id: 1,
       title: 'Beginner Classes',
